@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        
+        #container {
+            background-color: #f0f0f0;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            width: 600px;
+
+        }
+        .cool{
+            border: 1px solid black;
+            font-size: 20px;
+        }
+        .cool:hover{
+            background-color: rgba(21, 255, 235, 0.938);
+            color: rgb(0, 0, 0);
+            
+        }
+    </style>
+</head>
+
+<body>
+    <div id="container">
+        <h1>Randam Number</h1>
+        
+        <button onclick="generateRandomNumber()" class="btn cool">Click</button>
+        
+        <h3 id="print"></h3>
+
+    <script>
+        let resultElement = document.getElementById('print');
+
+        function generateRandomNumber() {
+            const minNumber = 5;
+            const maxNumber = 20;
+            const randomNumber = Math.floor(Math.random() * (maxNumber - minNumber + 1)) + minNumber;
+
+            let numbers = [];
+
+
+            let onessum = 0;
+            let onescounter = 0;
+            
+            let tenssum = 0;
+            let tensconter = 0;
+
+            let hundredssum = 0;
+            let hundredscounter = 0;
+
+            for (let i = 0; i < randomNumber; i++) {
+                numbers.push(Math.floor(Math.random() * 1000));
+
+                if (numbers[i] > 0 && numbers[i] < 10) {
+                    onessum += numbers[i];
+                    onescounter++;
+                } else if (numbers[i] > 9 && numbers[i] < 99) {
+                    tenssum += numbers[i];
+                    tensconter++;
+                } else {
+                    hundredssum += numbers[i]; hundredscounter++;
+                }
+            }
+
+            resultElement.innerHTML = `Random Number: ${randomNumber} <br> Numbers: 
+            ${numbers} <br> one's ${onescounter} (sum) - ${onessum} 
+            <br> Ten's ${tensconter} (sum) - ${tenssum} <br> Hundreds ${hundredscounter} (sum) 
+            - ${hundredssum} <br> Sum of all ${onessum + tenssum + hundredssum}`;
+        }
+    </script>
+</body>
+
+</html>
